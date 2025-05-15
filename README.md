@@ -21,3 +21,9 @@ Gambar berikut menunjukkan antrean pesan (queue) yang terbentuk saat `publisher`
 
 ![Slow Subscriber](images/Slow_Subscriber.png)
 
+- Reflection and Running at least three subscribers
+
+Saya menjalankan tiga instance `subscriber` di tiga terminal berbeda. Setelah `publisher` dijalankan beberapa kali secara cepat, proses penerimaan pesan terbagi ke masing-masing `subscriber` secara paralel. Hal ini terlihat dari log console ketiga terminal yang menunjukkan pesan dengan user_id berbeda, menandakan bahwa RabbitMQ berhasil mendistribusikan pesan secara merata. Grafik antrean pada dashboard RabbitMQ juga menunjukkan lonjakan antrean yang langsung turun, karena pesan segera diproses oleh tiga `subscriber` yang aktif. Ke depannya, sistem dapat ditingkatkan dengan menambahkan mekanisme asinkron berbasis tokio untuk membuat `subscriber` lebih efisien dan scalable saat menangani beban yang lebih besar.
+
+![Three Subscriber](images/Three_Subscriber.png)
+![Monitor Three Subscriber](images/Monitor_Three_Subscriber.png)
